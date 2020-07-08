@@ -1,0 +1,11 @@
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    ServerName {{ apache_vhosts_enabled.servername }}
+    DocumentRoot /var/www/{{ domainname }}/public_html
+    ErrorLog logs/{{ domainname }}-error_log
+    CustomLog logs/{{ domainname }}-access_log common
+
+
+
+</VirtualHost>
