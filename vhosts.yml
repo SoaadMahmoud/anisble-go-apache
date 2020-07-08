@@ -3,8 +3,8 @@
   hosts: 127.0.0.1
   connection: local
   gather_facts: no
-  vars_files:
-   - vars/defaults.yml
+  #vars_files:
+  # - vars/defaults.yml
 #  vars:
 
 #   servername: www.soad2.37.25.186.151..xip.io
