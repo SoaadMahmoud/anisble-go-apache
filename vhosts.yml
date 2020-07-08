@@ -76,7 +76,7 @@
   - name: Create a VirtualHost file for each enabled VirtualHost
     template:
       src: "templates/apache_vhost.conf.j2"
-      dest: /etc/httpd/sites-available/{{ domainname }}.conf
+      dest: /etc/httpd/sites-available/{{ lookup('env','alias') }}.conf
       owner: root
       group: root
       mode: 0755
@@ -101,7 +101,7 @@
 
   - name: Create web directories for each enabled VirtualHost
     file:
-      path: /var/www/{ domainname }/public_html
+      path: /var/www/{{ lookup('env','alias') }}/public_html
       state: directory
       owner: apache
       group: apache
@@ -126,7 +126,7 @@
   - name: Copy index file with owner and permission,
     copy:
      src: www.test.html
-     dest: /var/www/{ domainname }/public_html/
+     dest: /var/www/{{ lookup('env','alias') }}/public_html/
      owner: apache
      group: apache
      mode: u=rw,g=rw,o=rw
