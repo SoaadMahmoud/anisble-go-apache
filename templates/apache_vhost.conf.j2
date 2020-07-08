@@ -1,10 +1,16 @@
 NameVirtualHost *:80
 
 <VirtualHost *:80>
-    ServerName {{ apache_vhosts_enabled.servername }}
-    DocumentRoot /var/www/{{ domainname }}/public_html
-    ErrorLog logs/{{ domainname }}-error_log
-    CustomLog logs/{{ domainname }}-access_log common
+    ServerName {{ lookup('env','alias') }}.{{ lookup('env','servername') }}
+    ServerAlias { lookup('env','alias') }}.{{ lookup('env','servername') }}
+    DocumentRoot /var/www/{{ lookup('env','alias') }}/public_html
+    ErrorLog /var/www/{{ lookup('env','alias') }}/error.log
+    CustomLog /var/www/{{ lookup('env','alias') }}/requests.log combined
+    <Directory /var/www/{{ lookup('env','alias') }}/public_html>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+   </Directory>  
 
 
 
